@@ -14,13 +14,19 @@ def load_data(file_path_json ):
 def init_operation(data):
   """функция инициализации класса Operation (5 последних позиций)"""
 
+  operation_list = []
+
   for i in range(5):
 
     operations = Bank_operations(data[i])
-    operations.check_list()
+    operation_list.append(operations.check_list())
+
+  return operation_list
+
+
 
 # устанавливаем путь к файлу с данными в формате json
-file_path_json = "E:/Python_SqyPro/3_basics_of_backend/12.3/Operations_on_accounts/data/operations.jonson"
+file_path_json = "../data/operations.json"
 
 
 # Загружаем базу с сортированными данными операции
@@ -30,4 +36,5 @@ data=load_data(file_path_json )
 # Инициализируем класс Bank_operations, 5 последних операций
 operations = init_operation(data)
 
-
+# Вывод на печать 5-ти последних транзакций
+print("".join([str(operations[i]) for i in range(len(operations))]))

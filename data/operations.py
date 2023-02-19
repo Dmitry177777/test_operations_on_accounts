@@ -15,6 +15,8 @@ class Bank_operations ():
         self.from_check =''
         self.to_check=''
 
+
+
     def __repr__(self):
         return f'{self.date} {self.description}\n\n '
 
@@ -22,10 +24,15 @@ class Bank_operations ():
     def check_list (self):
         """Метод выводящий скрытые персональные банковские данные"""
 
+        method_output =[]
+
         self.from_check = self.x_list(self.from_, 8)
         self.to_check = self.x_list(self.to, 8)
 
-        print( f'{self.date} {self.description}\n{self.from_check} -> {self.to_check}\n{self.amount} {self.currency_name}\n\n ')
+        method_output = (f'{self.date} {self.description}\n{self.from_check} -> {self.to_check}\n{self.amount} {self.currency_name}\n\n ')
+
+        return method_output
+
 
     def x_list (self, check, k):
       """Метод скрывающий данные банковской карты и счета"""
@@ -34,7 +41,7 @@ class Bank_operations ():
 
       if len(list_x) > 0:
         x = len(list_x) - list_x[::-1].index(" ")   # поиск индекса пробела с конца строки
-        return "".join([list_x[i] if i < x or i >= x + k else "x" for i in range(len(list_x))])
+      return "".join([list_x[i] if i < x or i >= x + k else "x" for i in range(len(list_x))])
 
 
 
