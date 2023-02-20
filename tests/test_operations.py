@@ -1,36 +1,27 @@
 import unittest
-from data.operations import Bank_operations
-
+from data import operations
 
 class TestOperations(unittest.TestCase):
+    def setUp(self):
+      test_data = {'id': 114832369, 'state': 'EXECUTED', 'date': '2019-12-07T06:17:14.634890',
+                   'operationAmount': {'amount': '48150.39', 'currency': {'name': 'USD', 'code': 'USD'}},
+                   'description': 'Перевод организации', 'from': 'Visa Classic 2842878893689012',
+                   'to': 'Счет 35158586384610753655'}
 
-  def setUp(self, i):
-    self.operations = Bank_operations(i)
-    print(self.operations)
+      self.test_object = operations.Bank_operations(test_data)
+    def test_check(self):
+      self.assertEqual(self.test_object.check_list(), ('07.12.2019 Перевод организации\n'
+                                                       'Visa Classic xxxxxxxx93689012 -> Счет xxxxxxxx384610753655\n'
+                                                       '48150.39 USD\n'
+                                                       '\n'
+                                                       ' '))
 
-  # def test_check(self):
-  #   self.assertEqual(self.operations.check_list(), print( f'{self.date} {self.description}\n{self.from_check} -> {self.to_check}\n{self.amount} {self.currency_name}\n\n '))
+    def test_list(self):
+      self.assertEqual(self.test_object.x_list('Счет 90424923579946435907', 8),
+                       'Счет xxxxxxxx579946435907')
+      self.assertEqual(self.test_object.x_list('Visa Classic 1203468193689012', 8),
+                       'Visa Classic xxxxxxxx93689012')
 
-  def test_list(self):
-    check = 'Счет 90424923579946435907'
-    k = 8
-    print(self.operations.x_list(check, k))
-    self.assertEqual(self.operations.x_list(check, k), 'Счет xxxxxxxx579946435907')
 
 if __name__ == '__main__':
     unittest.main()
-
-    # self.id = i.get('id')  # номер "id":
-    # self.state = i.get('state')  # "state":
-    # self.date_full = i.get('date')  # формат 2019-12-08T22:46:21.935582
-    # self.date = f"{self.date_full[8:10]}.{self.date_full[5:7]}.{self.date_full[:4]}"  # формат 08.12.2019  #прошлый формат  2019-12-08T22:46:21.935582
-    # self.amount = i.get('operationAmount', {}).get('amount')  # "operationAmount":"amount":
-    # self.currency_name = i.get('operationAmount', {}).get('currency', {}).get(
-    #     'name')  # "operationAmount":"currency": "name":
-    # self.currency_code = i.get('operationAmount', {}).get('currency', {}).get(
-    #     'code')  # "operationAmount":"currency": "code":
-    # self.description = i.get('description')  # "description":
-    # self.from_ = i.get('from', "")  # "from":
-    # self.to = i.get('to')  # "to":
-    # self.from_check = ''
-    # self.to_check = ''
