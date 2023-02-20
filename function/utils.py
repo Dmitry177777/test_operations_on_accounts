@@ -23,15 +23,11 @@ def init_operation(data):
 
   return operation_list
 
-
-
 # устанавливаем путь к файлу с данными в формате json
 file_path_json = "../data/operations.json"
 
-
 # Загружаем базу с сортированными данными операции
 data=load_data(file_path_json )
-
 
 # Инициализируем класс Bank_operations, 5 последних операций
 operations = init_operation(data)
