@@ -24,7 +24,6 @@ class Bank_operations ():
     def check_list (self):
         """Метод выводящий скрытые персональные банковские данные"""
 
-        method_output =[]
 
         self.from_check = self.x_list(self.from_, 8)
         self.to_check = self.x_list(self.to, 8)
@@ -44,9 +43,3 @@ class Bank_operations ():
       return "".join([list_x[i] if i < x or i >= x + k else "x" for i in range(len(list_x))])
 
 
-
-
-# # Пример вывода для одной операции:
-# 14.10.2018 Перевод организации
-# Visa Platinum 7000 79** **** 6361 -> Счет **9638
-# 82771.72 руб.
